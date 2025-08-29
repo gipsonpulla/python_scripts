@@ -1,2 +1,2 @@
 # python_scripts
-General python scriptsspts s
+General python scripts
