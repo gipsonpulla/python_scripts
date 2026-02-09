@@ -1,21 +1,10 @@
-""" def add(*args, **kwargs):
-    for k, v in kwargs.items():
-        print (k, v)
+def args(n1, n2, n3, *args1, **kargs2):
+    print (f"{n1=}")
+    print (f"{n3=}")
+    print (f"{n3=}")
+    print (f"{args1= }")
+    print (f"{kargs2=}")
+    for k, v in kargs2.items():
+        print (k, kargs2[k])
 
-add("a", 5, b=5, d=4)
- """
-""" def display(n, m):
-    print (f"{n=}")
-    print (f"{m=}")
-
-display(5, 2)
- """
-
-check_even = lambda num: num % 2 == 0
-
-print (check_even(100))
-if check_even(100):
-    print ("True")
-else:
-    print ("False")
-
+args(1, 3, 5, 343, 34, 78, name="Gipson")
