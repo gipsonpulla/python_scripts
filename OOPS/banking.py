@@ -21,8 +21,30 @@ class Bank:
         amount = int(input("Enter the amount to deposit ="))
         self.balance += amount
 
-b1 = Bank()
-b1.show_balance()
-b1.deposit()
-b1.withdraw()
-b1.show_balance()
+'''
+x = Bank()
+banks.append(x)
+
+y = Bank()
+banks.append(y)
+
+banks[0].show_balance()
+'''
+
+banks = []
+while True:
+    print("1. create an account")
+    print("2. show all bank details")
+    print("3. Exit")
+    choice = int(input("Enter the choice = "))
+    if choice == 1:
+        obj = Bank()
+        banks.append(obj)
+        print (banks)
+    elif choice == 2:
+        pass
+    elif choice == 3:
+        break
+    else:
+        print("Invalid choice")
+
