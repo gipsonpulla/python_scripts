@@ -1,4 +1,7 @@
 class Car:
+    def __init__(self):
+        print ("car init")
+        
     def set_info(self, color: str, type: str, mileage: int, seat_capacity: int) -> None:
         self.color = color
         self.type = type
