@@ -10,9 +10,8 @@ class Student:
     def change_name(self, new_name: str):
         self.name = new_name
 
+
 s1 = Student()
 s1.display_info()
 s1.change_name("xya")
 s1.display_info()
-
-
