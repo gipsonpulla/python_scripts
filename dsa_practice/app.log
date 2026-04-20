@@ -1,0 +1,56 @@
+2026-04-17 10:01:12 INFO  [auth-service] Request received: POST /login user_id=12345 ip=192.168.1.10
+2026-04-17 10:01:12 INFO  [auth-service] Authenticating user_id=12345
+2026-04-17 10:01:13 ERROR [db-service] Connection timeout to DB host=10.0.0.5 port=3306
+2026-04-17 10:01:13 WARN  [auth-service] Retry attempt 1 for DB connection
+2026-04-17 10:01:15 ERROR [db-service] Connection timeout to DB host=10.0.0.5 port=3306
+2026-04-17 10:01:15 WARN  [auth-service] Retry attempt 2 for DB connection
+2026-04-17 10:01:18 ERROR [auth-service] Login failed for user_id=12345 reason=DB_UNREACHABLE
+
+2026-04-17 10:02:01 INFO  [order-service] Request received: POST /orders user_id=56789
+2026-04-17 10:02:01 INFO  [order-service] Validating order payload
+2026-04-17 10:02:02 INFO  [db-service] Query executed: SELECT * FROM inventory WHERE product_id=987
+2026-04-17 10:02:02 INFO  [order-service] Inventory available for product_id=987
+2026-04-17 10:02:03 INFO  [payment-service] Initiating payment for user_id=56789 amount=1200
+2026-04-17 10:02:04 ERROR [payment-service] Payment failed user_id=56789 error=INSUFFICIENT_FUNDS
+2026-04-17 10:02:04 WARN  [order-service] Order failed for user_id=56789
+
+2026-04-17 10:03:10 INFO  [api-gateway] Request received: GET /products ip=192.168.1.20
+2026-04-17 10:03:10 INFO  [product-service] Fetching product list
+2026-04-17 10:03:11 INFO  [db-service] Query executed: SELECT * FROM products LIMIT 50
+2026-04-17 10:03:11 INFO  [product-service] Response sent status=200
+
+2026-04-17 10:04:22 ERROR [db-service] Too many connections max_connections=100 current=100
+2026-04-17 10:04:22 WARN  [api-gateway] Upstream DB overloaded
+2026-04-17 10:04:23 ERROR [product-service] Failed to fetch products error=DB_CONNECTION_LIMIT
+
+2026-04-17 10:05:45 INFO  [auth-service] Request received: POST /login user_id=22222 ip=192.168.1.30
+2026-04-17 10:05:46 INFO  [db-service] Connection established host=10.0.0.5 port=3306
+2026-04-17 10:05:46 INFO  [auth-service] Login successful user_id=22222
+
+2026-04-17 10:06:30 ERROR [cache-service] Redis connection failed host=10.0.0.8 port=6379
+2026-04-17 10:06:30 WARN  [api-gateway] Falling back to DB for caching layer
+
+2026-04-17 10:07:55 INFO  [order-service] Request received: POST /orders user_id=99999
+2026-04-17 10:07:56 INFO  [db-service] Query executed: INSERT INTO orders VALUES (...)
+2026-04-17 10:07:57 INFO  [order-service] Order created successfully order_id=ABC123
+
+2026-04-17 10:08:12 ERROR [network] Packet loss detected between backend and DB latency=250ms
+2026-04-17 10:08:13 WARN  [db-service] Slow query detected execution_time=5.2s query="SELECT * FROM orders"
+
+2026-04-17 10:09:30 INFO  [scheduler] Running cleanup job
+2026-04-17 10:09:31 INFO  [db-service] Query executed: DELETE FROM sessions WHERE expired=1
+2026-04-17 10:09:32 INFO  [scheduler] Cleanup completed
+
+2026-04-17 10:10:05 ERROR [auth-service] Token validation failed user_id=12345 error=TOKEN_EXPIRED
+2026-04-17 10:10:06 WARN  [api-gateway] Unauthorized request blocked ip=192.168.1.10
+
+2026-04-17 10:11:20 INFO  [metrics] CPU usage=85% memory=78%
+2026-04-17 10:11:21 WARN  [metrics] High CPU usage detected threshold=80%
+2026-04-17 10:11:22 ERROR [autoscaler] Failed to scale service reason=LIMIT_REACHED
+
+2026-04-17 10:12:45 INFO  [deployment] New version deployed version=2.1.0
+2026-04-17 10:12:50 ERROR [auth-service] DB authentication failed user=db_user error=ACCESS_DENIED
+2026-04-17 10:12:51 WARN  [deployment] Possible misconfiguration in secrets
+
+2026-04-17 10:13:30 INFO  [health-check] Service status=DEGRADED
+2026-04-17 10:13:31 ERROR [health-check] DB connectivity issue detected
