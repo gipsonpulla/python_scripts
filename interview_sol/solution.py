@@ -24,7 +24,7 @@ error_count = 0
 error_types = Counter()
 replica_lags = []
 
-with open("/home/ubuntu/release.log", "r") as f:
+with open("release.log", "r") as f:
     for line in f:
         data = parse_lines(line)
 
